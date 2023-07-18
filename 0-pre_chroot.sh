@@ -105,4 +105,4 @@ esac
 
 pacstrap /mnt base linux linux-firmware neovim lvm2 --noconfirm --needed
 genfstab -U /mnt >> /mnt/etc/fstab
-cp -R ${SCRIPT_DIR} /mnt/root/NaidaArch
+cp -R ${SCRIPT_DIR} /mnt/root/NOS

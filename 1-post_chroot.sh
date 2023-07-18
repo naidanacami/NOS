@@ -82,5 +82,5 @@ fi
 # edits /etc/default/grub																							# edits cfg
 lvmuuid=$(blkid -s UUID -o value /dev/sda2)
 DefaultGrub="GRUB_CMDLINE_LINUX=\"cryptdevice=UUID=${lvmuuid}:cryptLVM root=/dev/vg1/root\""	
-python3 /root/NaidaArch/Replace_Line.py -r GRUB_CMDLINE_LINUX= -d /etc/default/grub -i "${DefaultGrub}"
+python3 $SCRIPT_DIR/Replace_Line.py -r GRUB_CMDLINE_LINUX= -d /etc/default/grub -i "${DefaultGrub}"
 grub-mkconfig -o /boot/grub/grub.cfg
