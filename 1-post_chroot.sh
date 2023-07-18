@@ -23,7 +23,7 @@ EOF
 
 
 # Needed packages
-pacman -S --noconfirm --needed grub efibootmgr networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools dosfstools base-devel linux-headers get reflector bluez bluez-utils pulseaudio-bluetooth xdg-utils xdg-user-dirs python3
+pacman -S --noconfirm grub efibootmgr networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools dosfstools base-devel linux-headers git reflector bluez bluez-utils pulseaudio-bluetooth xdg-utils xdg-user-dirs python3
 
 
 # Microcode
@@ -81,6 +81,6 @@ fi
 # This assumes that partition 2 is the LVM partition. It should be if the disk is zapped and properly parted.
 # edits /etc/default/grub																							# edits cfg
 lvmuuid=$(blkid -s UUID -o value /dev/sda2)
-DefaultGrub="GRUB_CMDLINE_LINUX=\"cryptdevice=UUID=${lvmuuid}:cryptLVM root=/dev/vg1/root\""	
+DefaultGrub="GRUB_CMDLINE_LINUX=\"cryptdevice=UUID=${lvmuuid}:cryptLVM root=/dev/${volume_group_name}/root\""	
 python3 $SCRIPT_DIR/Replace_Line.py -r GRUB_CMDLINE_LINUX= -d /etc/default/grub -i "${DefaultGrub}"
 grub-mkconfig -o /boot/grub/grub.cfg
