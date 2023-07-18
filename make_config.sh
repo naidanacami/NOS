@@ -12,7 +12,7 @@ if [ -e "$configFileName" ]; then
     # Check the user's response
     if [ "$answer" = "y" ]; then
         # Perform the deletion
-        rm $(configFileName)
+        rm $configFileName
     else
         exit
     fi
