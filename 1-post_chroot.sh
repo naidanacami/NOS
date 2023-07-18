@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-configFileName=${HOME}/NaidaArch/install.conf
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+configFileName=$SCRIPT_DIR/preferences.conf
 . $configFileName
 
 # Hostname

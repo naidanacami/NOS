@@ -41,7 +41,7 @@ case $formatdisk in
         sgdisk -Z ${disk} # zap all on disk
         sgdisk -a 2048 -o ${disk} # new gpt disk 2048 alignment
 
-        configFileName=/root/NaidaArch/install.conf
+        configFileName=$SCRIPT_DIR/preferences.conf
     	. $configFileName
 
         # Partitions

@@ -2,10 +2,9 @@
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # Read config file, error if it exists
-#configFileName=${HOME}/NaidaArch/install.conf
-configFileName=$SCRIPT_DIR/install.conf
+configFileName=$SCRIPT_DIR/preferences.conf
 if [ -e "$configFileName" ]; then
-	echo "Configuration file install.conf already exists."
+	echo "Configuration file preferences.conf already exists."
     read -p "Remake config? [Y/n]: " answer
     # Convert the answer to lowercase for case-insensitive comparison
     answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
