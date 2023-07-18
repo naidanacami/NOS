@@ -14,7 +14,7 @@ if [[ "${disk}" != *"/dev/"* ]]; then
 fi
 
 disk_size_bytes=$(lsblk -b -o SIZE -n -d $(disk))
-disk_size_gib=$((disk_size_bytes / 1024 / 1024 / 1024 / 1024))
+disk_size_gib=$(numfmt --to=iec-i --suffix=B --format="%.1f" $disk_size_bytes)
 
 echo "Please enter desired root (/) directory size (in GiB): (max ${disk_size_gib})"
 read rootsize
