@@ -9,7 +9,14 @@ lsblk
 echo "Please enter disk to work on: (example /dev/sda)"
 read disk
 disk="${disk,,}"
-echo "Please enter desired root (/) directory size (in GiB): (example 50)"
+if [[ "${disk}" != *"/dev/"* ]]; then
+    disk="/dev/${disk}"
+fi
+
+disk_size_bytes=$(lsblk -b -o SIZE -n -d $(disk))
+disk_size_gib=$((disk_size_bytes / 1024 / 1024 / 1024 / 1024))
+
+echo "Please enter desired root (/) directory size (in GiB): (max ${disk_size_gib})"
 read rootsize
 
 while true; do
@@ -22,9 +29,7 @@ echo "Please try again"
 done
 
 
-if [[ "${disk}" != *"/dev/"* ]]; then
-    disk="/dev/${disk}"
-fi
+
 echo "THIS WILL FORMAT AND DELETE ALL DATA ON THE DISK"
 read -p "are you sure you want to continue (Y/N):" formatdisk
 case $formatdisk in
