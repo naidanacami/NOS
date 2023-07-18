@@ -75,7 +75,7 @@ echo "Detected BIOS"
 fi
 if [[ -d "/sys/firmware/efi" ]]; then
     echo "Detected EFI"
-    grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=${hostname}_grub
+    grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id="${hostname}_grub"
 fi
 
 # This assumes that partition 2 is the LVM partition. It should be if the disk is zapped and properly parted.
