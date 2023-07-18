@@ -6,9 +6,7 @@ cmd="bash 0-pre_chroot.sh"
 $cmd
 
 status=$? && [ $status -eq 0 ] || exit
-arch-chroot /mnt 
-cd /NOS
-bash 1-post_chroot.sh
+arch-chroot /mnt /bin/bash /root/NOS/1-post_chroot.sh
 
 echo -ne "
    ▄   ████▄    ▄▄▄▄▄   
