@@ -5,30 +5,28 @@ SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 #configFileName=${HOME}/NaidaArch/install.conf
 configFileName=$SCRIPT_DIR/install.conf
 if [ -e "$configFileName" ]; then
-	echo "Configuration file install.conf already exists...  Cannot continue."
-    exit
+	echo "Configuration file install.conf already exists."
+    read -p "Remake config? [Y/n]: " answer
+    # Convert the answer to lowercase for case-insensitive comparison
+    answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
+    # Check the user's response
+    if [ "$answer" = "y" ]; then
+        # Perform the deletion
+        rm $(configFileName)
+    else
+        exit
+    fi
 fi
+
 
 # Set hostname
-if [ -e "$configFileName" ] && [ ! -z "$hostname" ]; then
-	echo "hostname: $hostname"
-else
-	read -p "Please name your machine: " hostname
-	echo "hostname=\"$hostname\"" >> $configFileName
-fi
+read -p "Please name your machine: " hostname
+echo "hostname=\"$hostname\"" >> $configFileName
 
 # Set crypt device name
-if [ -e "$configFileName" ] && [ ! -z "$crypt_device" ]; then
-	echo "crypt_device: $crypt_device"
-else
-	read -p "Please name your crypt device: " volume_group_name
-	echo "crypt_device=\"$crypt_device\"" >> $configFileName
-fi
+read -p "Please name your crypt device: " crypt_device
+echo "crypt_device=\"$crypt_device\"" >> $configFileName
 
 # Set vg name
-if [ -e "$configFileName" ] && [ ! -z "$volume_group_name" ]; then
-	echo "volume_group_name: $volume_group_name"
-else
-	read -p "Please name your volume group: " volume_group_name
-	echo "volume_group_name=\"$volume_group_name\"" >> $configFileName
-fi
+read -p "Please name your volume group: " volume_group_name
+echo "volume_group_name=\"$volume_group_name\"" >> $configFileName
