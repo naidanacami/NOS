@@ -3,7 +3,6 @@
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 
-
 # User prompts
 lsblk
 echo "Please enter disk to work on: (example /dev/sda)"
@@ -13,7 +12,7 @@ if [[ "${disk}" != *"/dev/"* ]]; then
     disk="/dev/${disk}"
 fi
 
-disk_size_bytes=$(lsblk -b -o SIZE -n -d $(disk))
+disk_size_bytes=$(lsblk -b -o SIZE -n -d $disk)
 disk_size_gib=$(numfmt --to=iec-i --suffix=B --format="%.1f" $disk_size_bytes)
 
 echo "Please enter desired root (/) directory size (in GiB): (max ${disk_size_gib})"
@@ -29,7 +28,7 @@ echo "Please try again"
 done
 
 
-
+# Partitioning, formatting, and mounting
 echo "THIS WILL FORMAT AND DELETE ALL DATA ON THE DISK"
 read -p "are you sure you want to continue (Y/N):" formatdisk
 case $formatdisk in
@@ -106,6 +105,3 @@ esac
 pacstrap /mnt base linux linux-firmware neovim lvm2 --noconfirm --needed
 genfstab -U /mnt >> /mnt/etc/fstab
 cp -R ${SCRIPT_DIR} /mnt/home/NOS
-
-echo "0-pre_chroot done!"
-sleep 2

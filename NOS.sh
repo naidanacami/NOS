@@ -1,5 +1,16 @@
 #!/bin/bash
 
+echo -ne "
+   ▄   ████▄    ▄▄▄▄▄   
+    █  █   █   █     ▀▄ 
+██   █ █   █ ▄  ▀▀▀▀▄   
+█ █  █ ▀████  ▀▄▄▄▄▀    
+█  █ █                  
+█   ██                  
+
+     Arch Installer     
+"
+
 status=$?
 bash make_config.sh
 cmd="bash 0-pre_chroot.sh"
