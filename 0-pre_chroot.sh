@@ -14,7 +14,7 @@ while true; do
     fi
 
     # Check if the directory exists
-    if [ -b "$directory" ]; then
+    if [ -b "$disk" ]; then
         break
     else
         echo "ERROR: ${disk} does not exist. Try again!"
