@@ -29,3 +29,7 @@ echo "crypt_device=\"$crypt_device\"" >> $configFileName
 # Set vg name
 read -p "Please name your volume group: " volume_group_name
 echo "volume_group_name=\"$volume_group_name\"" >> $configFileName
+
+# Set grub name
+read -p "Please name grub: " grub_name
+echo "grub_name=\"$grub_name\"" >> $configFileName
