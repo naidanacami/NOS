@@ -11,13 +11,15 @@ while true; do
     disk="${disk,,}"
     if [[ "${disk}" != *"/dev/"* ]]; then
         disk="/dev/${disk}"
+    fi
 
     # Check if the directory exists
-    if [ -e "$directory" ]; then
+    if [ -b "$directory" ]; then
         break
     else
         echo "ERROR: ${disk} does not exist. Try again!"
-fi
+    fi
+done
 
 disk_size_bytes=$(lsblk -b -o SIZE -n -d $disk)
 disk_size_gib=$(numfmt --to=iec-i --suffix=B --format="%.1f" $disk_size_bytes)
