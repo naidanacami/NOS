@@ -33,3 +33,6 @@ echo "volume_group_name=\"$volume_group_name\"" >> $configFileName
 # Set grub name
 read -p "Please name grub: " grub_name
 echo "grub_name=\"$grub_name\"" >> $configFileName
+
+echo ""
+echo ""
