@@ -1,9 +1,9 @@
-# NaidaOS
+# N-OS
 This script completes **most** of the arch installation procedures. This is not a post-install script.
 
-This installs an LVM on LUKS setup using ext4.
+This installs an LVM on LUKS setup, using the ext4 filesystem.
 
-# Usage
+# Usagea
 1. Install git
     ```
     pacman -Sy git
