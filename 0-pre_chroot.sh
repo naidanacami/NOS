@@ -6,10 +6,17 @@ SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 # User prompts
 lsblk
 echo "Please enter disk to work on: (example /dev/sda)"
-read disk
-disk="${disk,,}"
-if [[ "${disk}" != *"/dev/"* ]]; then
-    disk="/dev/${disk}"
+while true; do
+    read disk
+    disk="${disk,,}"
+    if [[ "${disk}" != *"/dev/"* ]]; then
+        disk="/dev/${disk}"
+
+    # Check if the directory exists
+    if [ -e "$directory" ]; then
+        break
+    else
+        echo "ERROR: ${disk} does not exist. Try again!"
 fi
 
 disk_size_bytes=$(lsblk -b -o SIZE -n -d $disk)
