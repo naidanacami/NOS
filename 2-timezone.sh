@@ -1,6 +1,6 @@
 #!/bin/bash
 
-timezone=curl https://ipapi.co/timezone
+timezone=$(curl https://ipapi.co/timezone)
 
 echo "Detected timezone: ${timezone}"
 
@@ -12,7 +12,7 @@ if [ "$choice" != "y" ]; then
 fi
 
 # Set time
-timedatectl --no-ask-password set-ntp 1
-timedatectl --no-ask-password set-timezone $timezone
-ln -sf /usr/share/zoneinfo/$timezone /etc/localtime
-hwclock --systohc
+sudo timedatectl --no-ask-password set-ntp 1
+sudo timedatectl --no-ask-password set-timezone $timezone
+sudo ln -sf /usr/share/zoneinfo/$timezone /etc/localtime
+sudo hwclock --systohc
