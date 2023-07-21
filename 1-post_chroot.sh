@@ -94,14 +94,11 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 
 # User
-echo ""
-read -p "Username: " username
-passwd $username
+useradd -mG wheel $username
+echo "$username:$userpass" | chpasswd
+echo "$root:$rootpass" | chpasswd
 
-echo ""
-echo "Root password"
-passwd
-
+shred -u $configFileName	
 
 # Sudo privilages
 sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers

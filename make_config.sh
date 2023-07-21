@@ -34,5 +34,33 @@ echo "volume_group_name=\"$volume_group_name\"" >> $configFileName
 read -p "Please name grub: " grub_name
 echo "grub_name=\"$grub_name\"" >> $configFileName
 
+
+# Get username
+read -p "Please enter username: " username
+echo "username=\"$username\"" >> $configFileName
+
+# Get passwd
+while true; do
+    read -p "Password for $username: " userpass
+    read -p "Verify password for $username : " userpass2
+    if [ "$userpass" = "$userpass2" ] && [ "$userpass" != "" ]; then
+        break
+    fi
+echo "Please try again"
+done
+echo "userpass=\"$userpass\"" >> $configFileName
+
+# Get root passwd
+while true; do
+    read -p "Password for root: " rootpass
+    read -p "Verify password for root : " rootpass
+    if [ "$rootpass" = "$rootpass2" ] && [ "$rootpass" != "" ]; then
+        break
+    fi
+echo "Please try again"
+done
+echo "rootpass=\"$rootpass\"" >> $configFileName
+
+
 echo ""
 echo ""
