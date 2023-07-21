@@ -22,6 +22,13 @@ cat <<EOF > /etc/hosts
 EOF
 
 
+# Locale
+locale=en_US.UTF-8
+echo $locale >> /etc/locale.gen
+locale-gen
+echo LANG=$locale  > /etc/locale.conf
+
+
 # Needed packages
 pacman -S --noconfirm grub efibootmgr networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools dosfstools base-devel linux-headers git reflector bluez bluez-utils pulseaudio-bluetooth xdg-utils xdg-user-dirs python3
 
@@ -63,7 +70,7 @@ sleep 1
 mkinitcpio -P
 
 
-# Install Grub																										# Install grub
+# Install Grub
 if [[ ! -d "/sys/firmware/efi" ]]; then
 echo "Detected BIOS"
 #    grub-install --target=i386-pc ${disk}
@@ -84,3 +91,17 @@ lvmuuid=$(blkid -s UUID -o value /dev/sda2)
 DefaultGrub="GRUB_CMDLINE_LINUX=\"cryptdevice=UUID=${lvmuuid}:cryptLVM root=/dev/${volume_group_name}/root\""	
 python3 $SCRIPT_DIR/Replace_Line.py -r GRUB_CMDLINE_LINUX= -d /etc/default/grub -i "${DefaultGrub}"
 grub-mkconfig -o /boot/grub/grub.cfg
+
+
+# User
+echo ""
+read -p "Username: " username
+passwd $username
+
+echo ""
+echo "Root password"
+passwd
+
+
+# Sudo privilages
+sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
