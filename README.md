@@ -3,7 +3,7 @@ This script completes **most** of the arch installation procedures. This is not 
 
 This installs an LVM on LUKS setup, using the ext4 filesystem.
 
-# Usagea
+# Usage
 1. Install git
     ```
     pacman -Sy git
@@ -20,9 +20,8 @@ This installs an LVM on LUKS setup, using the ext4 filesystem.
 4. Follow prompts
 
 ### Other responsabilities
-This script leaves a few things out of the installation process. You must:
-1. [Set the timedate and locale](https://youtu.be/kD3WC-93jEk?t=685)
-2. [Add root passwd, and user acc and configure sudo wheel privileges](https://youtu.be/kD3WC-93jEk?t=1209)
+After reboot, run ```2-timezone.sh```. I have had problems running it automatically in chroot
+
 
 
 # Post install.
