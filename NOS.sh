@@ -19,6 +19,8 @@ $cmd
 status=$? && [ $status -eq 0 ] || exit
 arch-chroot /mnt /bin/bash /home/NOS/1-post_chroot.sh
 
+umount -a
+
 echo -ne "
    ▄   ████▄    ▄▄▄▄▄   
     █  █   █   █     ▀▄ 
@@ -31,5 +33,5 @@ echo -ne "
 "
 
 echo "-------------------------------------------------------------------------"
-echo "--               Please complete post-chroot duties!                   --"
+echo "--                 Please reboot and run 2-timezone.sh                 --"
 echo "-------------------------------------------------------------------------"
