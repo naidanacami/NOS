@@ -53,7 +53,7 @@ echo "userpass=\"$userpass\"" >> $configFileName
 # Get root passwd
 while true; do
     read -p "Password for root: " rootpass
-    read -p "Verify password for root : " rootpass
+    read -p "Verify password for root : " rootpass2
     if [ "$rootpass" = "$rootpass2" ] && [ "$rootpass" != "" ]; then
         break
     fi

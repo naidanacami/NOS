@@ -98,7 +98,7 @@ useradd -mG wheel $username
 echo "$username:$userpass" | chpasswd
 echo "$root:$rootpass" | chpasswd
 
-shred -u $configFileName	
+shred -u $configFileName
 
 # Sudo privilages
 sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
