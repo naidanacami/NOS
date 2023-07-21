@@ -96,9 +96,14 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # User
 useradd -mG wheel $username
 echo "$username:$userpass" | chpasswd
-echo "$root:$rootpass" | chpasswd
+echo "root:$rootpass" | chpasswd
 
 shred -u $configFileName
 
 # Sudo privilages
 sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+
+
+# Misc
+systemctl enable NetworkManager
