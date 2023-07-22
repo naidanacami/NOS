@@ -24,7 +24,7 @@ EOF
 
 # Locale
 locale=en_US.UTF-8
-echo $locale >> /etc/locale.gen
+echo "${locale} UTF-8" >> /etc/locale.gen
 locale-gen
 echo LANG=$locale  > /etc/locale.conf
 
